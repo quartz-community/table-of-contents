@@ -1,7 +1,7 @@
 import type {
   QuartzComponent,
   QuartzComponentProps,
-  QuartzComponentFunction,
+  QuartzComponentConstructor,
 } from "@quartz-community/types";
 import { classNames } from "../util/lang";
 import { i18n } from "../i18n";
@@ -114,4 +114,4 @@ export default ((opts?: Partial<Options>) => {
   LegacyTableOfContents.css = legacyStyle;
 
   return layout === "modern" ? TableOfContents : LegacyTableOfContents;
-}) satisfies QuartzComponentFunction;
+}) satisfies QuartzComponentConstructor<Partial<Options>>;
