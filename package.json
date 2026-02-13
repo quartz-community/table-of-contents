@@ -60,7 +60,7 @@
     }
   },
   "dependencies": {
-    "@quartz-community/types": "github:quartz-community/types"
+    "@quartz-community/types": "file:../types"
   },
   "devDependencies": {
     "@types/node": "^24.10.0",
