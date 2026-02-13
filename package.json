@@ -60,9 +60,14 @@
     }
   },
   "dependencies": {
-    "@quartz-community/types": "github:quartz-community/types"
+    "@quartz-community/types": "github:quartz-community/types",
+    "mdast": "^3.0.0",
+    "unist-util-visit": "^5.0.0",
+    "mdast-util-to-string": "^4.0.0",
+    "github-slugger": "^2.0.0"
   },
   "devDependencies": {
+    "@types/mdast": "^4.0.4",
     "@types/node": "^24.10.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
