@@ -10,17 +10,22 @@ npx quartz plugin add github:quartz-community/table-of-contents
 
 ## Usage
 
-```ts
-// quartz.config.ts
-import * as ExternalPlugin from "./.quartz/plugins"
-plugins: {
-  transformers: [ExternalPlugin.TableOfContentsTransformer({ maxDepth: 3 })],
-}
+```yaml title="quartz.config.yaml"
+plugins:
+  - source: github:quartz-community/table-of-contents
+    enabled: true
+```
 
-// quartz.layout.ts
-import * as Plugin from "./.quartz/plugins"
-// In layout right sidebar:
-Plugin.TableOfContents()
+For advanced use cases, you can override in TypeScript:
+
+```ts title="quartz.ts (override)"
+import * as ExternalPlugin from "./.quartz/plugins";
+
+// Transformer
+ExternalPlugin.TableOfContentsTransformer({ maxDepth: 3 });
+
+// Component
+ExternalPlugin.TableOfContents({ layout: "modern" });
 ```
 
 ## Configuration
@@ -42,7 +47,7 @@ Plugin.TableOfContents()
 
 ## Documentation
 
-See the [Quartz documentation](https://quartz.jzhao.xyz/) for more information.
+See the [Quartz documentation](https://quartz.jzhao.xyz/plugins/TableOfContents) for more information.
 
 ## License
 
