@@ -1,5 +1,6 @@
 import type { QuartzTransformerPlugin } from "@quartz-community/types";
 import type { Root } from "mdast";
+import type { VFile } from "vfile";
 import { visit } from "unist-util-visit";
 import { toString } from "mdast-util-to-string";
 import Slugger from "github-slugger";
@@ -34,8 +35,9 @@ export const TableOfContentsTransformer: QuartzTransformerPlugin<
     markdownPlugins() {
       return [
         () => {
-          return async (tree: Root, file: any) => {
-            const display = file.data.frontmatter?.enableToc ?? opts.showByDefault;
+          return async (tree: Root, file: VFile) => {
+            const frontmatter = file.data.frontmatter as Record<string, unknown> | undefined;
+            const display = frontmatter?.enableToc ?? opts.showByDefault;
             if (display) {
               slugAnchor.reset();
               const toc: TocEntry[] = [];
