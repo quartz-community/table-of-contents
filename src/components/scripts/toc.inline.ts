@@ -40,11 +40,14 @@ function setupToc() {
   }
 }
 
-document.addEventListener("nav", () => {
+function handleNavOrRender() {
   setupToc();
 
   // update toc entry highlighting
   observer.disconnect();
   const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
   headers.forEach((header) => observer.observe(header));
-});
+}
+
+document.addEventListener("nav", handleNavOrRender);
+document.addEventListener("render", handleNavOrRender);
