@@ -49,7 +49,10 @@
   },
   "peerDependencies": {
     "@jackyzha0/quartz": "^4.5.2",
-    "preact": "^10.0.0"
+    "preact": "^10.0.0",
+    "github-slugger": "^2.0.0",
+    "mdast-util-to-string": "^4.0.0",
+    "unist-util-visit": "^5.0.0"
   },
   "peerDependenciesMeta": {
     "@jackyzha0/quartz": {
@@ -57,16 +60,20 @@
     },
     "preact": {
       "optional": false
+    },
+    "github-slugger": {
+      "optional": true
+    },
+    "mdast-util-to-string": {
+      "optional": true
+    },
+    "unist-util-visit": {
+      "optional": true
     }
   },
   "dependencies": {
     "@quartz-community/types": "github:quartz-community/types",
-    "github-slugger": "^2.0.0",
-    "mdast": "^3.0.0",
-    "mdast-util-to-string": "^4.0.0",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.3",
-    "unist-util-visit": "^5.0.0"
+    "mdast": "^3.0.0"
   },
   "devDependencies": {
     "@types/mdast": "^4.0.4",
@@ -78,7 +85,9 @@
     "preact": "^10.28.2",
     "prettier": "^3.6.2",
     "sass": "^1.97.3",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": ">=22",
