@@ -48,9 +48,9 @@
   },
   "peerDependencies": {
     "@jackyzha0/quartz": "^4.5.2",
-    "preact": "^10.0.0",
     "github-slugger": "^2.0.0",
     "mdast-util-to-string": "^4.0.0",
+    "preact": "^10.0.0",
     "unist-util-visit": "^5.0.0"
   },
   "peerDependenciesMeta": {
