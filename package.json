@@ -87,7 +87,10 @@
   "quartz": {
     "name": "table-of-contents",
     "displayName": "Table of Contents",
-    "category": "transformer",
+    "category": [
+      "transformer",
+      "component"
+    ],
     "version": "1.0.0",
     "quartzVersion": ">=5.0.0",
     "dependencies": [],
