@@ -68,10 +68,3 @@ export const TableOfContentsTransformer: QuartzTransformerPlugin<
     },
   };
 };
-
-declare module "vfile" {
-  interface DataMap {
-    toc: TocEntry[];
-    collapseToc: boolean;
-  }
-}

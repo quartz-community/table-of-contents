@@ -14,11 +14,5 @@ interface TocEntry {
     slug: string;
 }
 declare const TableOfContentsTransformer: QuartzTransformerPlugin<Partial<TableOfContentsTransformerOptions>>;
-declare module "vfile" {
-    interface DataMap {
-        toc: TocEntry[];
-        collapseToc: boolean;
-    }
-}
 
 export { TableOfContentsTransformer, type TableOfContentsTransformerOptions, type TocEntry };
