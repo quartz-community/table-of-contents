@@ -59,7 +59,8 @@
     }
   },
   "dependencies": {
-    "@quartz-community/types": "github:quartz-community/types"
+    "@quartz-community/types": "github:quartz-community/types",
+    "@quartz-community/utils": "github:quartz-community/utils"
   },
   "devDependencies": {
     "@types/mdast": "^4.0.4",

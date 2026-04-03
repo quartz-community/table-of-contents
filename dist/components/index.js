@@ -1,9 +1,7 @@
+import { classNames } from '@quartz-community/utils/lang';
 import { jsxs, jsx } from 'preact/jsx-runtime';
 
 // src/util/lang.ts
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 // src/i18n/locales/en-US.ts
 var en_US_default = {
