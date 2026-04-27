@@ -1,5 +1,3 @@
-import { jsxs, jsx } from 'preact/jsx-runtime';
-
 // node_modules/@quartz-community/utils/dist/lang.js
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -320,20 +318,42 @@ var toc_default = ".toc {\n  display: flex;\n  flex-direction: column;\n  overfl
 
 // src/components/scripts/toc.inline.ts
 var toc_inline_default = 'var i=new IntersectionObserver(t=>{for(let e of t){let n=e.target.id,o=document.querySelectorAll(`a[data-for="${n}"]`),s=e.rootBounds?.height;s&&o.length>0&&(e.boundingClientRect.y<s?o.forEach(c=>c.classList.add("in-view")):o.forEach(c=>c.classList.remove("in-view")))}});function r(){this.classList.toggle("collapsed"),this.setAttribute("aria-expanded",this.getAttribute("aria-expanded")==="true"?"false":"true");let t=this.nextElementSibling;t&&t.classList.toggle("collapsed")}function a(){let t=Array.from(document.getElementsByClassName("toc"));for(let e of t){let n=e.querySelector(".toc-header"),o=e.querySelector(".toc-content");if(!n||!o)return;n.addEventListener("click",r);let s=()=>n.removeEventListener("click",r);window.addCleanup&&window.addCleanup(s)}}function d(){a(),i.disconnect(),document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]").forEach(e=>i.observe(e))}document.addEventListener("nav",d);document.addEventListener("render",d);\n';
+var l;
+l = { __e: function(n2, l2, u3, t2) {
+  for (var i2, r2, o2; l2 = l2.__; ) if ((i2 = l2.__c) && !i2.__) try {
+    if ((r2 = i2.constructor) && null != r2.getDerivedStateFromError && (i2.setState(r2.getDerivedStateFromError(n2)), o2 = i2.__d), null != i2.componentDidCatch && (i2.componentDidCatch(n2, t2 || {}), o2 = i2.__d), o2) return i2.__E = i2;
+  } catch (l3) {
+    n2 = l3;
+  }
+  throw n2;
+} }, "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, Math.random().toString(8);
+
+// node_modules/preact/jsx-runtime/dist/jsxRuntime.mjs
+var f2 = 0;
+function u2(e2, t2, n2, o2, i2, u3) {
+  t2 || (t2 = {});
+  var a2, c2, p2 = t2;
+  if ("ref" in p2) for (c2 in p2 = {}, t2) "ref" == c2 ? a2 = t2[c2] : p2[c2] = t2[c2];
+  var l2 = { type: e2, props: p2, key: n2, ref: a2, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: --f2, __i: -1, __u: 0, __source: i2, __self: u3 };
+  if ("function" == typeof e2 && (a2 = e2.defaultProps)) for (c2 in a2) void 0 === p2[c2] && (p2[c2] = a2[c2]);
+  return l.vnode && l.vnode(l2), l2;
+}
+
+// src/components/OverflowList.tsx
 var OverflowList = ({
   children,
   ...props
 }) => {
-  return /* @__PURE__ */ jsxs("ul", { ...props, class: [props.class, "overflow"].filter(Boolean).join(" "), id: props.id, children: [
+  return /* @__PURE__ */ u2("ul", { ...props, class: [props.class, "overflow"].filter(Boolean).join(" "), id: props.id, children: [
     children,
-    /* @__PURE__ */ jsx("li", { class: "overflow-end" })
+    /* @__PURE__ */ u2("li", { class: "overflow-end" })
   ] });
 };
 var numLists = 0;
 var OverflowList_default = () => {
   const id = `list-${numLists++}`;
   return {
-    OverflowList: (props) => /* @__PURE__ */ jsx(OverflowList, { ...props, id }),
+    OverflowList: (props) => /* @__PURE__ */ u2(OverflowList, { ...props, id }),
     overflowListAfterDOMLoaded: `
 document.addEventListener("nav", (e) => {
   const observer = new IntersectionObserver((entries) => {
@@ -368,6 +388,8 @@ document.addEventListener("nav", (e) => {
 function concatenateResources(...resources) {
   return resources.filter((resource) => resource !== void 0).flat();
 }
+
+// src/components/TableOfContents.tsx
 var defaultOptions = {
   layout: "modern"
 };
@@ -381,8 +403,8 @@ var TableOfContents_default = ((opts) => {
       return null;
     }
     const id = `toc-${numTocs++}`;
-    return /* @__PURE__ */ jsxs("div", { class: classNames("toc"), children: [
-      /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ u2("div", { class: classNames("toc"), children: [
+      /* @__PURE__ */ u2(
         "button",
         {
           type: "button",
@@ -390,8 +412,8 @@ var TableOfContents_default = ((opts) => {
           "aria-controls": id,
           "aria-expanded": !fileData.collapseToc,
           children: [
-            /* @__PURE__ */ jsx("h3", { children: i18n(cfg.locale).components.tableOfContents.title }),
-            /* @__PURE__ */ jsx(
+            /* @__PURE__ */ u2("h3", { children: i18n(cfg.locale).components.tableOfContents.title }),
+            /* @__PURE__ */ u2(
               "svg",
               {
                 xmlns: "http://www.w3.org/2000/svg",
@@ -404,13 +426,13 @@ var TableOfContents_default = ((opts) => {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 class: "fold",
-                children: /* @__PURE__ */ jsx("polyline", { points: "6 9 12 15 18 9" })
+                children: /* @__PURE__ */ u2("polyline", { points: "6 9 12 15 18 9" })
               }
             )
           ]
         }
       ),
-      /* @__PURE__ */ jsx(
+      /* @__PURE__ */ u2(
         OverflowList2,
         {
           id,
@@ -419,7 +441,7 @@ var TableOfContents_default = ((opts) => {
             const slug = String(tocEntry.slug);
             const depth = String(tocEntry.depth);
             const text = String(tocEntry.text);
-            return /* @__PURE__ */ jsx("li", { class: `depth-${depth}`, children: /* @__PURE__ */ jsx("a", { href: `#${slug}`, "data-for": slug, children: text }) }, slug);
+            return /* @__PURE__ */ u2("li", { class: `depth-${depth}`, children: /* @__PURE__ */ u2("a", { href: `#${slug}`, "data-for": slug, children: text }) }, slug);
           })
         }
       )
@@ -435,13 +457,13 @@ var TableOfContents_default = ((opts) => {
     if (!fileData?.toc) {
       return null;
     }
-    return /* @__PURE__ */ jsxs("details", { class: "toc", open: !fileData.collapseToc, children: [
-      /* @__PURE__ */ jsx("summary", { children: /* @__PURE__ */ jsx("h3", { children: i18n(cfg.locale).components.tableOfContents.title }) }),
-      /* @__PURE__ */ jsx("ul", { children: fileData.toc.map((tocEntry) => {
+    return /* @__PURE__ */ u2("details", { class: "toc", open: !fileData.collapseToc, children: [
+      /* @__PURE__ */ u2("summary", { children: /* @__PURE__ */ u2("h3", { children: i18n(cfg.locale).components.tableOfContents.title }) }),
+      /* @__PURE__ */ u2("ul", { children: fileData.toc.map((tocEntry) => {
         const slug = String(tocEntry.slug);
         const depth = String(tocEntry.depth);
         const text = String(tocEntry.text);
-        return /* @__PURE__ */ jsx("li", { class: `depth-${depth}`, children: /* @__PURE__ */ jsx("a", { href: `#${slug}`, "data-for": slug, children: text }) }, slug);
+        return /* @__PURE__ */ u2("li", { class: `depth-${depth}`, children: /* @__PURE__ */ u2("a", { href: `#${slug}`, "data-for": slug, children: text }) }, slug);
       }) })
     ] });
   };
