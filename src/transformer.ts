@@ -1,9 +1,9 @@
 import type { QuartzTransformerPlugin } from "@quartz-community/types";
-import type { Root } from "mdast";
-import type { VFile } from "vfile";
-import { visit } from "unist-util-visit";
-import { toString } from "mdast-util-to-string";
 import Slugger from "github-slugger";
+import type { Root } from "mdast";
+import { toString } from "mdast-util-to-string";
+import { visit } from "unist-util-visit";
+import type { VFile } from "vfile";
 
 export interface TableOfContentsTransformerOptions {
   maxDepth: 1 | 2 | 3 | 4 | 5 | 6;
@@ -26,6 +26,25 @@ export interface TocEntry {
 }
 
 const slugAnchor = new Slugger();
+
+function hasCalloutClass(className: any): boolean {
+  if (typeof className === "string") {
+    return className.split(/\s+/).includes("callout");
+  }
+  if (Array.isArray(className)) {
+    return className.some((value) => typeof value === "string" && value === "callout");
+  }
+  return false;
+}
+
+function isCalloutBlockquote(node: any): boolean {
+  if (node?.type !== "blockquote") return false;
+  const props = node.data?.hProperties ?? {};
+  return (
+    props["data-callout"] !== null || props.dataCallout !== null || hasCalloutClass(props.className)
+  );
+}
+
 export const TableOfContentsTransformer: QuartzTransformerPlugin<
   Partial<TableOfContentsTransformerOptions>
 > = (userOpts) => {
@@ -42,7 +61,15 @@ export const TableOfContentsTransformer: QuartzTransformerPlugin<
               slugAnchor.reset();
               const toc: TocEntry[] = [];
               let highestDepth: number = opts.maxDepth;
+              const calloutHeadings = new Set<any>();
+              visit(tree, "blockquote", (node) => {
+                if (!isCalloutBlockquote(node)) return;
+                visit(node, "heading", (heading) => {
+                  calloutHeadings.add(heading);
+                });
+              });
               visit(tree, "heading", (node) => {
+                if (calloutHeadings.has(node)) return;
                 if (node.depth <= opts.maxDepth) {
                   const text = toString(node);
                   highestDepth = Math.min(highestDepth, node.depth);
