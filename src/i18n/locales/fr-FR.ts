@@ -1,7 +1,7 @@
 export default {
   components: {
     tableOfContents: {
-      title: "Table des Matières",
+      title: "Table des matières",
     },
   },
 };
