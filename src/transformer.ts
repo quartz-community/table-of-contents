@@ -1,7 +1,7 @@
 import type { QuartzTransformerPlugin } from "@quartz-community/types";
 import type { Root } from "mdast";
 import type { VFile } from "vfile";
-import { visit } from "unist-util-visit";
+import { visit, SKIP } from "unist-util-visit";
 import { toString } from "mdast-util-to-string";
 import Slugger from "github-slugger";
 
@@ -26,6 +26,8 @@ export interface TocEntry {
 }
 
 const slugAnchor = new Slugger();
+// `callout` is the mdast node remark-obsidian produces for `> [!type]` blocks
+const QUOTE_TYPES = new Set<string>(["blockquote", "callout"]);
 export const TableOfContentsTransformer: QuartzTransformerPlugin<
   Partial<TableOfContentsTransformerOptions>
 > = (userOpts) => {
@@ -42,7 +44,16 @@ export const TableOfContentsTransformer: QuartzTransformerPlugin<
               slugAnchor.reset();
               const toc: TocEntry[] = [];
               let highestDepth: number = opts.maxDepth;
-              visit(tree, "heading", (node) => {
+              visit(tree, (node) => {
+                // Obsidian omits headings inside blockquotes and callouts from the outline
+                if (QUOTE_TYPES.has(node.type)) {
+                  // ...but they still get ids, so keep the slugger in sync for duplicates
+                  visit(node, "heading", (h) => {
+                    slugAnchor.slug(toString(h));
+                  });
+                  return SKIP;
+                }
+                if (node.type !== "heading") return;
                 if (node.depth <= opts.maxDepth) {
                   const text = toString(node);
                   highestDepth = Math.min(highestDepth, node.depth);
