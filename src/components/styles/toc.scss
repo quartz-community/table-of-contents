@@ -3,7 +3,9 @@
   flex-direction: column;
   overflow-y: hidden;
   min-height: 1.4rem;
-  flex: 0 0.5 auto;
+  // a shrink factor < 1 only removes part of the overflow (flexbox spec), which let a
+  // long TOC grow past the bottom of the sidebar; the list scrolls inside .toc instead
+  flex: 0 1 auto;
   &:has(button.toc-header.collapsed) {
     flex: 0 1 1.4rem;
   }
@@ -41,7 +43,9 @@ ul.toc-content.overflow {
   position: relative;
   margin: 0.5rem 0;
   padding: 0;
-  max-height: calc(100% - 2rem);
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: none;
   overscroll-behavior: contain;
   list-style: none;
 
