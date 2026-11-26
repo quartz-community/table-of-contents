@@ -59,7 +59,9 @@ ul.toc-content.overflow {
 
   & > li > a {
     color: var(--dark);
-    opacity: 0.35;
+    // The lowest opacity that keeps 4.5:1 contrast in both default palettes;
+    // entries in view are also bold.
+    opacity: 0.8;
     transition:
       0.5s ease opacity,
       0.3s ease color;
