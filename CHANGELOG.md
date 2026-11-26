@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- c199ca0: The table of contents button's `aria-controls` points at its list: the list's id was replaced by a generic `list-0`, so it pointed at nothing. The id is now `toc-list-<n>`, distinct from the explorer's and backlinks' lists, which also used `list-0`.
+- eb6916c: Entries for sections not in view are at 80% opacity instead of 35%, the lowest that keeps 4.5:1 text contrast (WCAG AA) in light and dark mode. They were 2.0:1. Entries in view stay bold.
+
 ## 1.0.4
 
 ### Patch Changes
