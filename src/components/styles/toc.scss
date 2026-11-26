@@ -6,9 +6,17 @@
   // a shrink factor < 1 only removes part of the overflow (flexbox spec), which let a
   // long TOC grow past the bottom of the sidebar; the list scrolls inside .toc instead
   flex: 0 1 auto;
+  // collapsed: as tall as its header, which a fixed 1.4rem clipped (by 2px with Quartz's
+  // fonts, more with a theme's larger headings)
   &:has(button.toc-header.collapsed) {
-    flex: 0 1 1.4rem;
+    flex: 0 0 auto;
   }
+}
+
+ul.toc-content.overflow.collapsed {
+  height: 0;
+  margin: 0;
+  visibility: hidden;
 }
 
 button.toc-header {
