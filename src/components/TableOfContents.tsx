@@ -20,10 +20,10 @@ const defaultOptions: Options = {
   layout: "modern",
 };
 
-let numTocs = 0;
 export default ((opts?: Partial<Options>) => {
   const layout = opts?.layout ?? defaultOptions.layout;
-  const { OverflowList, overflowListAfterDOMLoaded } = OverflowListFactory();
+  // The button controls the list, so it points at the list's id.
+  const { id, OverflowList, overflowListAfterDOMLoaded } = OverflowListFactory();
   const TableOfContents: QuartzComponent = (props: QuartzComponentProps) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { fileData, cfg } = props as any;
@@ -31,7 +31,6 @@ export default ((opts?: Partial<Options>) => {
       return null;
     }
 
-    const id = `toc-${numTocs++}`;
     return (
       <div class={classNames("toc")}>
         <button
@@ -56,10 +55,7 @@ export default ((opts?: Partial<Options>) => {
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-        <OverflowList
-          id={id}
-          class={fileData.collapseToc ? "collapsed toc-content" : "toc-content"}
-        >
+        <OverflowList class={fileData.collapseToc ? "collapsed toc-content" : "toc-content"}>
           {fileData.toc.map((tocEntry: Record<string, unknown>) => {
             const slug = String(tocEntry.slug);
             const depth = String(tocEntry.depth);
