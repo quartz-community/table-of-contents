@@ -12,11 +12,14 @@ const OverflowList = ({
   );
 };
 
+// Each plugin bundles its own copy of this file, with its own counter, so ids
+// carry the plugin's prefix (a shared `list-0` appeared once per plugin).
 let numLists = 0;
 export default () => {
-  const id = `list-${numLists++}`;
+  const id = `toc-list-${numLists++}`;
 
   return {
+    id,
     OverflowList: (props: JSX.HTMLAttributes<HTMLUListElement>) => (
       <OverflowList {...props} id={id} />
     ),
