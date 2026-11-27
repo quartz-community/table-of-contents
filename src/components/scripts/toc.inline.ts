@@ -41,7 +41,8 @@ function setupToc() {
   for (const toc of tocElements) {
     const button = toc.querySelector(".toc-header");
     const content = toc.querySelector(".toc-content");
-    if (!button || !content) return;
+    // a TOC without its header or list: set up the others
+    if (!button || !content) continue;
     button.addEventListener("click", toggleToc);
     const cleanup = () => button.removeEventListener("click", toggleToc);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
